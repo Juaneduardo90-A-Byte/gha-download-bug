@@ -1,0 +1,18 @@
+name: Test
+on: [push]
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run:
+        Expand-Archive -Path "gh-bug-ubuntu-350ac5db114810934de6df4208908d8696f27b74.zip" -DestinationPath .
+      shell: pwsh
+    - uses: actions/upload-artifact@v1
+      with:
+        name: test
+        path: gh-bug-ubuntu-350ac5db114810934de6df4208908d8696f27b74
+    - uses: actions/download-artifact@v1
+      with:
+        name: test
